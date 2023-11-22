@@ -46,10 +46,10 @@ def parse_args():
     # ours
     parser.add_argument('--dataset', type=str, default='caltech101')
     parser.add_argument('--method', type=str, default='convpass', choices=['convpass', 'repadapter'])
-    parser.add_argument('--model_struct', type=str, default='ViT', choices=['ViT', 'Swin', 'Conv'])
+    parser.add_argument('--model_struct', type=str, default='ViT', choices=['ViT', 'Swin'])
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--lr', type=float, default=1e-3)
-    parser.add_argument('--min_lr', type=float, default=0.)
+    parser.add_argument('--min_lr', type=float, default=1e-5)
     parser.add_argument('--insert_scale', type=float, default=10)
     parser.add_argument('--wd', type=float, default=1e-4)
     parser.add_argument('--epochs', type=int, default=100)
@@ -289,7 +289,7 @@ def main():
             else:
                 p.requires_grad = False
 
-        for _, p in model.head.named_parameters():  # 再单独将head设为true
+        for _, p in model.head.named_parameters(): 
             p.requires_grad = True
 
         opt = AdamW([p for name, p in model.named_parameters() if p.requires_grad], lr=args.lr, weight_decay=args.wd)
@@ -314,25 +314,6 @@ def main():
             print(f"Accuracy of the network on the {len(val_loader.dataset)} test images: {test_stats['acc1']:.1f}%")
             max_accuracy = max(max_accuracy, test_stats["acc1"])
             print(f'Max accuracy: {max_accuracy:.2f}%')
-
-    # throughput(model, bs=64)
-
-    # if args.save_as is not None:
-    #     print("Saving the pruned model to %s" % args.save_as + f'{args.pruning_type}')
-    #     # os.makedirs(os.path.dirname(args.save_as + f'/{args.pruning_type}_{args.dataset}_{args.method}'), exist_ok=True)
-    #     # model.zero_grad()
-    #     state_dict = tp.state_dict(model)  # the pruned model, e.g., a resnet-18-half
-    #     torch.save(state_dict, args.save_as + f'{args.pruning_type}/{args.dataset}_{args.method}.pth')
-    #     # torch.save(model, args.save_as + f'{args.pruning_type}/{args.dataset}_{args.method}.pth')
-    #
-    # new_model = create_model('vit_base_patch16_224_in21k', checkpoint_path='/root/autodl-tmp/pre_train/ViT-B_16.npz',
-    #                          drop_path_rate=0.1)
-    # set_Convpass(new_model, 'convpass', dim=8, s=config['scale'], xavier_init=config['xavier_init'])
-    # new_model.reset_classifier(config['class_num'])
-    # loaded_state_dict = torch.load(args.save_as + f'{args.pruning_type}/{args.dataset}_{args.method}.pth',
-    #                                map_location='cpu')
-    # tp.load_state_dict(new_model, state_dict=loaded_state_dict)
-    # print(new_model)
 
 
 if __name__ == '__main__':
