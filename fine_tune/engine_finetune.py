@@ -48,7 +48,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
     for data_iter_step, batch in enumerate(metric_logger.log_every(data_loader, print_freq, header)):
         samples, targets = batch[0], batch[1]
         # we use a per iteration (instead of per epoch) lr scheduler
-        # 学习率策略调整
         if args.retraining_strategy != 'FT':
             if data_iter_step % accum_iter == 0:
                 lr_sched.adjust_learning_rate(optimizer, data_iter_step / len(data_loader) + epoch, args)
