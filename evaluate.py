@@ -11,7 +11,7 @@ from convpass import set_Convpass
 from utils import get_config, set_seed
 from repadapter import set_RepAdapter, set_RepWeight
 from pruning_train import load
-from try_code import set_drop_backbone
+from set_pruning import set_drop_backbone
 
 
 @torch.no_grad()
