@@ -138,7 +138,7 @@ if __name__ == '__main__':
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--dataset', type=str, default='oxford_iiit_pet')
     parser.add_argument('--method', type=str, default='convpass', choices=['convpass', 'repadapter'])
-    parser.add_argument('--model_struct', type=str, default='ViT', choices=['ViT', 'Swin', 'Pruned'])
+    parser.add_argument('--model_struct', type=str, default='ViT', choices=['ViT', 'Swin'])
     args = parser.parse_args()
     print(args)
 
