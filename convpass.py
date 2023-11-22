@@ -110,18 +110,6 @@ class QuickGELU(nn.Module):
     def forward(self, x: torch.Tensor):
         return x * torch.sigmoid(1.702 * x)
 
-
-class VanillaAdapter(nn.Module):
-    def __init__(self, dim, xavier_init):
-        super().__init__()
-        self.down = nn.Linear(768, 32)
-        self.act = QuickGELU()
-        self.up = nn.Linear(32, 768)
-
-    def forward(self, x):
-        return self.up(self.act(self.down(x)))
-
-
 class Convpass(nn.Module):
     def __init__(self, dim=8, xavier_init=False):
         super().__init__()
@@ -251,19 +239,3 @@ def set_Convpass(model, method, dim=8, s=1, xavier_init=False):
                 setattr(_, 'forward', bound_method)
             elif len(list(_.children())) != 0:
                 set_Convpass(_, method, dim, s, xavier_init)
-
-
-def new_set_Convpass(model, method, dim=8, s=1, xavier_init=False):
-    block_count = 0
-    for _ in model.children():
-        if type(_) == timm.models.vision_transformer.Block:
-            block_count += 1
-            print(block_count)
-            _.adapter_attn = Convpass(dim, xavier_init)
-            _.adapter_mlp = Convpass(dim, xavier_init)
-            _.s = s * (block_count / 11)
-            bound_method = forward_block.__get__(_, _.__class__)
-            setattr(_, 'forward', bound_method)
-
-        elif len(list(_.children())) != 0:
-            new_set_Convpass(_, method, dim, s, xavier_init)
