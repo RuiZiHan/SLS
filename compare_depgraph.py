@@ -178,7 +178,7 @@ def main():
     #     else:
     #         p.requires_grad = False
     #
-    # for _, p in model.head.named_parameters():  # 再单独将head设为true
+    # for _, p in model.head.named_parameters(): 
     #     p.requires_grad = True
 
     model = model.to(device)
