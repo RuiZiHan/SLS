@@ -233,10 +233,10 @@ if __name__ == '__main__':
     for i in range(model_depth):
         run_t_SNE(method=args.method, model_struct=args.model_struct, dataset=args.dataset, layer_id=model_depth - i,
                   model_depth=model_depth)
-        brear_or_not, score = analyse_t_SNE(method=args.method, model_struct=args.model_struct, dataset=args.dataset,
+        break_or_not, score = analyse_t_SNE(method=args.method, model_struct=args.model_struct, dataset=args.dataset,
                                             layer_id=model_depth - i, best_score=best_score)
         if i == 0:
             best_score = score
             print('best_score = ', best_score)
-        if brear_or_not:
+        if break_or_not:
             break
