@@ -1,4 +1,0 @@
-name: clevr_count
-class_num: 8
-scale: 10
-xavier_init: True

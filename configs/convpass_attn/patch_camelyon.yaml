@@ -1,4 +1,0 @@
-name: patch_camelyon
-class_num: 2
-scale: 10
-xavier_init: True

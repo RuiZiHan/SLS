@@ -1,4 +1,0 @@
-name: clevr_dist
-class_num: 6
-scale: 1
-xavier_init: True

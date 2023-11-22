@@ -1,4 +1,0 @@
-name: resisc45
-class_num: 45
-scale: 100
-xavier_init: True
