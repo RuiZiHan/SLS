@@ -77,18 +77,15 @@ if __name__ == '__main__':
     parser.add_argument('--turnon_save', type=bool, default=True)
 
     args = parser.parse_args()
-    # 在 args = parser.parse_args() 获取args后，添加这两行代码，将搜索到的超参数更新agrs，以便于传递给模型
-    # nni_params = nni.get_next_parameter()
-    # args = merge_parameter(args, nni_params)
 
     # /root/autodl-tmp/output_ours/pruning_target/convpass/ViT
     print(args)
 
     if torch.cuda.is_available():
-        device = torch.device(args.device)  # 定义模型运行的设备，默认cuda
+        device = torch.device(args.device)
     else:
         device = 'cpu'
-    cudnn.benchmark = True  # 提升运行速度
+    cudnn.benchmark = True
 
     set_seed(args.seed)
     config = get_config(args.method, args.dataset)
@@ -135,11 +132,6 @@ if __name__ == '__main__':
         current_depth = target_depth
         print(f"fine-tuning {current_depth} block backbone")
 
-        # # ViT模型，保留上一次训练头的权重
-        # if args.model_struct == 'ViT':
-        #     set_drop_backbone(model, current_depth=current_depth)
-        #     model.reset_classifier(config['class_num'])
-        # if args.model_struct == 'Swin':
         set_drop_backbone(model, current_depth=current_depth)
         model.reset_classifier(config['class_num'])
 
@@ -162,7 +154,7 @@ if __name__ == '__main__':
             else:
                 p.requires_grad = False if not args.fulltune else True
 
-        for _, p in model.head.named_parameters():  # 再单独将head设为true
+        for _, p in model.head.named_parameters():
             p.requires_grad = True
 
         model = model.to(device)
@@ -183,8 +175,6 @@ if __name__ == '__main__':
         loss_scaler = NativeScaler()
         criterion = torch.nn.CrossEntropyLoss()
         print("criterion = %s" % str(criterion))
-        # if i != 0:
-        #     args.epochs = 40
 
         print(f"Start training for {args.epochs} epochs")
         max_accuracy = 0.0
@@ -225,44 +215,7 @@ if __name__ == '__main__':
                     log_writer.flush()
                 with open(os.path.join(args.output_dir, "log.txt"), mode="a", encoding="utf-8") as f:
                     f.write(json.dumps(log_stats) + "\n")
-
-            # test_stats = evaluate(test_dl, model, device, args=args)
-            # if args.output_dir and test_stats["acc1"] > max_accuracy:
-            #     max_acc_index = epoch
-            #     save(args.dadataset, model)
-            #     # misc.save_model(
-            #     #     args=args, model=model, model_without_ddp=model, optimizer=opt,
-            #     #     loss_scaler=loss_scaler, epoch=epoch)
-            #
-            # GB = 1024.0 * 1024.0 * 1024.0
-            # print(f"Accuracy of the network on the {len(test_dl.dataset)} test images: {test_stats['acc1']:.1f}%")
-            # max_accuracy = max(max_accuracy, test_stats["acc1"])
-            #
-            # nni.report_intermediate_result(test_stats["acc1"])
-            #
-            # pme = test_stats["acc1"] * math.exp(
-            #     -1 * math.log(n_parameters / 1.e8 + (torch.cuda.max_memory_allocated() / 1024) / (20 * GB) + 1, 10))
-            # print('Parameter-Memory Efficiency:', pme)
-            # max_pme = max(max_pme, pme)
-            #
-            # print(f'Max accuracy: {max_accuracy:.2f}%')
-            # print(f'Max PME: {max_pme:.2f}')
-            #
-            # if log_writer is not None:
-            #     log_writer.add_scalar('perf/test_acc1', test_stats['acc1'], epoch)
-            #     log_writer.add_scalar('perf/test_acc5', test_stats['acc5'], epoch)
-            #     log_writer.add_scalar('perf/test_loss', test_stats['loss'], epoch)
-            #
-            # log_stats = {**{f'train_{k}': v for k, v in train_stats.items()},
-            #              **{f'test_{k}': v for k, v in test_stats.items()},
-            #              'epoch': epoch,
-            #              'n_parameters': n_parameters}
-            #
-            # if args.output_dir and misc.is_main_process():
-            #     if log_writer is not None:
-            #         log_writer.flush()
-            #     with open(os.path.join(args.output_dir, "log.txt"), mode="a", encoding="utf-8") as f:
-            #         f.write(json.dumps(log_stats) + "\n")
+                    
         if args.turnon_save:
             with open(f'/root/autodl-tmp/output_ours/{args.method}/{args.model_struct}/{args.dataset}.log',
                       mode="a") as f:
@@ -273,7 +226,4 @@ if __name__ == '__main__':
         total_time = time.time() - start_time
         total_time_str = str(datetime.timedelta(seconds=int(total_time)))
         print('Training time {}'.format(total_time_str))
-
-        # nni.report_final_result(max_accuracy)
-
         print(config['best_acc'])
