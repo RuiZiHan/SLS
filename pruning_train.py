@@ -16,8 +16,7 @@ from argparse import ArgumentParser
 from vtab import *
 from utils import *
 from convpass import set_Convpass
-from set_pruning import set_drop_backbone, set_limited_convpass, backbone_weight_fusioin, \
-    set_mixAdapter, set_Side_Adapter, set_layer_forward, set_block_forward
+from set_pruning import set_drop_backbone
 import nni
 import torch_pruning as tp
 from nni.utils import merge_parameter
