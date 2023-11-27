@@ -97,19 +97,6 @@ def get_acc(model, method, dataset, current_depth, model_struct):
         print(test(model, test_dl))
 
 
-def get_macs(model, method, dataset, current_depth):
-    config = get_config(method, dataset)
-    model.current_depth = current_depth
-    bound_method = vit_forward_drop.__get__(model, model.__class__)
-    setattr(model, 'forward_features', bound_method)
-    set_Convpass(model, method, dim=8, s=config['scale'], xavier_init=config['xavier_init'])
-    model.reset_classifier(config['class_num'])
-    model = load(dataset, model, current_depth)
-    x = torch.rand(1, 3, 224, 224)
-    macs, params = profile(model, inputs=(x,))
-    return macs / 1e9
-
-
 @torch.no_grad()
 def throughput(model, img_size=224, bs=1):
     with torch.no_grad():
@@ -123,14 +110,14 @@ def throughput(model, img_size=224, bs=1):
         torch.cuda.synchronize()
         print(f"throughput averaged with 30 times")
         tic1 = time.time()
-        for i in range(30):
+        for i in range(100):
             model(x)
         torch.cuda.synchronize()
         tic2 = time.time()
-        print(f"batch_size {batch_size} throughput {30 * batch_size / (tic2 - tic1)}")
+        print(f"batch_size {batch_size} throughput {100 * batch_size / (tic2 - tic1)}")
         MB = 1024.0 * 1024.0
         print('memory:', torch.cuda.max_memory_allocated() / MB)
-    return 30 * batch_size / (tic2 - tic1)
+    return 100 * batch_size / (tic2 - tic1)
 
 
 if __name__ == '__main__':
