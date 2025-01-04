@@ -5,7 +5,7 @@ When fine-tuning pre-trained models for vision tasks using Parameter-Efficient T
 
 If you want to precisely prune specific redundant layers, follow the steps below:
 
-# Requirements
+## Requirements
 - Python 3.8+
 - PyTorch >= 1.8
 - Timm
@@ -21,8 +21,10 @@ To download the datasets, please refer to https://github.com/ZhangYuanhan-AI/NOA
 ### Pretrained Model
 Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/imagenet21k/ViT-B_16.npz) to `<YOUR PATH>/convpass/ViT-B_16.npz`
 
-# 1. Tuned a Model Using Convpass
+### 1. Tuned a Model Using Convpass
+'''
 python main.py --dataset eurosat --method convpass
+'''
 
 [Paper](http://arxiv.org/abs/2407.14330)
 
