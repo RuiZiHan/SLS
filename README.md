@@ -24,10 +24,15 @@ Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/ima
 ### Tuned a Model Using Convpass (we use the EuroSAT dataset as an example)
 ```sh
 python train.py --dataset eurosat --method convpass
+# --dataset: Dataset name (e.g., eurosat, cifar100)
+# --method: Fine-tuning method (e.g., convpass)
 ```
 ### Prune the Parameter-Efficient Model Using SLS
 ```sh
 python prune.py --dataset eurosat --method convpass --alpha 0.3 --plot_tsne False --retraining True
+# --alpha: A hyperparameter that controls the pruning degree (default: 0.3)
+# --plot_tsne: Enable/disable t-SNE visualization
+# --retraining: Whether to retrain the pruned model
 ```
 
 [Paper](http://arxiv.org/abs/2407.14330)
