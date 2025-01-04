@@ -8,7 +8,7 @@ If you want to precisely prune specific redundant layers, follow the steps below
 ## Requirements
 - Python 3.8+
 - PyTorch >= 1.8
-- Timm==0.9.10
+- Timm == 0.9.10
 - Matplotlib
 - Pandas
 - Scikit-learn
