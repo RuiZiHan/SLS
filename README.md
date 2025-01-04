@@ -34,6 +34,16 @@ python prune.py --dataset eurosat --method convpass --alpha 0.3 --plot_tsne Fals
 # --plot_tsne: Enable/disable t-SNE visualization
 # --retraining: Whether to retrain the pruned model
 ```
-
+## Citation
+```
+@inproceedings{han2025straightforward,
+  title={Straightforward Layer-wise Pruning for More Efficient Visual Adaptation},
+  author={Han, Ruizi and Tang, Jinglei},
+  booktitle={European Conference on Computer Vision},
+  pages={236--252},
+  year={2025},
+  organization={Springer}
+}
+```
 [Paper](http://arxiv.org/abs/2407.14330)
 
