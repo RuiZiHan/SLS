@@ -35,6 +35,7 @@ python prune.py --dataset eurosat --method convpass --alpha 0.3 --plot_tsne Fals
 # --retraining: Whether to retrain the pruned model
 ```
 ## Citation
+If you find this work helpful, please cite the following paper:
 ```
 @inproceedings{han2025straightforward,
   title={Straightforward Layer-wise Pruning for More Efficient Visual Adaptation},
