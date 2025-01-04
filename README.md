@@ -53,4 +53,5 @@ If you find this work helpful, please cite the following paper:
   organization={Springer}
 }
 ```
-
+## Acknowledgments
+Part of the code is borrowed from [Convpass]([https://github.com/ZhangYuanhan-AI/NOAH](https://github.com/JieShibo/PETL-ViT/tree/main/convpass)) and [timm](https://github.com/rwightman/pytorch-image-models).
