@@ -1,5 +1,6 @@
 # SLS
 Source code of "Straightforward Layer-wise Pruning for More Efficient Visual Adaptation"
+
 [Paper](http://arxiv.org/abs/2407.14330)
 
 TL;DR: When fine-tuning pre-trained models for vision tasks using Parameter-Efficient Transfer Learning (PETL), pruning the entire last few layers after fine-tuning significantly improves throughput. In most cases, this results in only a minimal and acceptable drop in performance.
