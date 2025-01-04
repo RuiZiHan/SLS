@@ -17,7 +17,7 @@ If you want to precisely prune specific redundant layers, follow the steps below
 
 ## Data Preparation
 
-To download the datasets, please refer to https://github.com/luogen1996/RepAdapter?tab=readme-ov-file#data-preparation (thank [ZhangYuanhan-AI](https://github.com/ZhangYuanhan-AI) for their code). Then move the dataset folders to `<YOUR PATH>/vtab-1k/`
+To download the datasets, please refer to https://github.com/luogen1996/RepAdapter?tab=readme-ov-file#data-preparation (thank [ZhangYuanhan-AI](https://github.com/ZhangYuanhan-AI) and [luogen1996](https://github.com/luogen1996) for their code). Then move the dataset folders to `<YOUR PATH>/vtab-1k/`
 
 ## Usage
 ### Pretrained Model
