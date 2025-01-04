@@ -34,6 +34,11 @@ python prune.py --dataset eurosat --method convpass --alpha 0.3 --plot_tsne Fals
 # --plot_tsne: Enable/disable t-SNE visualization
 # --retraining: Whether to retrain the pruned model
 ```
+### Example Results
+- EuroSAT Dataset:
+  - Original accuracy: 95.2%
+  - Pruned accuracy w/o retraining: 94.1%
+  - Pruned accuracy w/ retraining: 94.9%
 ## Citation
 If you find this work helpful, please cite the following paper:
 ```
