@@ -13,6 +13,14 @@ If you want to precisely prune specific redundant layers, follow the steps below
 - Pandas
 - Scikit-learn
 
+## Data Preparation
+
+To download the datasets, please refer to https://github.com/ZhangYuanhan-AI/NOAH/#data-preparation (thank [ZhangYuanhan-AI](https://github.com/ZhangYuanhan-AI) for their code). Then move the dataset folders to `<YOUR PATH>/convpass/vtab/data/`. 
+
+## Usage
+### Pretrained Model
+Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/imagenet21k/ViT-B_16.npz) to `<YOUR PATH>/convpass/ViT-B_16.npz`
+
 # 1. Tuned a Model Using Convpass
 python main.py --dataset eurosat --method convpass
 
