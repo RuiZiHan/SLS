@@ -13,6 +13,8 @@ If you want to precisely prune specific redundant layers, follow the steps below
 - Pandas
 - Scikit-learn
 
+# 1. Tuned a Model Using Convpass
+python main.py --dataset eurosat --method convpass
 
 [Paper](http://arxiv.org/abs/2407.14330)
 
