@@ -5,7 +5,14 @@ When fine-tuning pre-trained models for vision tasks using Parameter-Efficient T
 
 If you want to precisely prune specific redundant layers, follow the steps below:
 
-This is an unorganized code version, the official code is coming soon
+# Requirements
+- Python 3.8+
+- PyTorch >= 1.8
+- Timm
+- Matplotlib
+- Pandas
+- Scikit-learn
+
 
 [Paper](http://arxiv.org/abs/2407.14330)
 
