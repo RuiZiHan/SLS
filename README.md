@@ -25,6 +25,10 @@ Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/ima
 ```sh
 python train.py --dataset eurosat --method convpass
 ```
+### Prune the Parameter-Efficient Model Using SLS
+```sh
+python prune.py --dataset eurosat --method convpass --alpha 0.3 --plot_tsne False --retraining True
+```
 
 [Paper](http://arxiv.org/abs/2407.14330)
 
