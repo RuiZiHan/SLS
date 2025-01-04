@@ -21,7 +21,7 @@ To download the datasets, please refer to https://github.com/ZhangYuanhan-AI/NOA
 ### Pretrained Model
 Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/imagenet21k/ViT-B_16.npz) to `<YOUR PATH>/ViT-B_16.npz`
 
-### Tuned a Model Using PETL Method (we use the EuroSAT dataset as an example)
+### Tuned a Model Using PETL Method (we use the EuroSAT dataset and the Convpass method as an example)
 ```sh
 python train.py --dataset eurosat --method convpass
 # --dataset: Dataset name (e.g., eurosat, cifar100)
