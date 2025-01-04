@@ -19,7 +19,7 @@ To download the datasets, please refer to https://github.com/ZhangYuanhan-AI/NOA
 
 ## Usage
 ### Pretrained Model
-Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/imagenet21k/ViT-B_16.npz) to `<YOUR PATH>/convpass/ViT-B_16.npz`
+Download the [pretrained ViT-B/16](https://storage.googleapis.com/vit_models/imagenet21k/ViT-B_16.npz) to `<YOUR PATH>/ViT-B_16.npz`
 
 ### 1. Tuned a Model Using Convpass (we use the EuroSAT dataset as an example)
 ```sh
