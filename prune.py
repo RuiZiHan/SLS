@@ -102,7 +102,8 @@ def plotlabels(S_lowDWeights, label, args, layer_index):
     S_data.to_csv(file_path)
     
     if args.plot_tsne:
-        
+
+        fig = plt.figure(figsize=(20, 10))
         for index in range(config['class_num']):  #class_num
             X = S_data.loc[S_data['label'] == index]['x']
             Y = S_data.loc[S_data['label'] == index]['y']
@@ -112,7 +113,6 @@ def plotlabels(S_lowDWeights, label, args, layer_index):
             plt.yticks([])  
             plt.axis('off')
         
-        fig = plt.figure(figsize=(20, 10))
         name = f'{args.method}_{args.dataset}_{layer_index}blocks'
         plt.title(name, fontsize=64, fontweight='normal', pad=20)
         plt.show()
